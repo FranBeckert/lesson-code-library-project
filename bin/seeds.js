@@ -1,8 +1,15 @@
+// This code snippet sets up a connection to a MongoDB database using Mongoose.
+
+// The mongoose module is imported, which allows interaction with MongoDB using an object data modeling (ODM) approach,as implemented by Mongoose in this context, is a programming paradigm that facilitates the interaction between a JavaScript application and a MongoDB database by providing a schema-based solution for modeling application data.
 const mongoose = require("mongoose");
+
+// The Book model is imported from the "../models/Book.model" file.
 const Book = require("../models/Book.model");
 
+// The MONGO_URI variable is defined to specify the connection URL for MongoDB. It is set to the value of process.env.MONGODB_URI if it exists, otherwise it defaults to "mongodb://localhost/library-project".
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/library-project";
 
+// This code sets up a connection to the MongoDB database specified by the MONGO_URI, using the specified options. Once the connection is established, Mongoose will use the connection to interact with the MongoDB database, allowing operations such as querying, creating, updating, and deleting documents in the database.
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -85,6 +92,8 @@ const books = [
   }
 ];
 
+
+//It demonstrates how to use Mongoose's create() method to insert multiple documents (books) into the MongoDB database, and then close the database connection.
 Book.create(books)
   .then((booksFromDB) => {
     console.log(`Created ${booksFromDB.length} books`);
